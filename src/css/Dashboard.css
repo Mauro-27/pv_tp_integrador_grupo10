@@ -1,0 +1,16 @@
+.dashboard-contenedor {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.dashboard-tarjetas-caja {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.dashboard-tarjeta {
+  min-width: 200px;
+  flex: 1; 
+}
