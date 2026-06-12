@@ -1,0 +1,31 @@
+/* src/css/listaClientes.css */
+
+.lista-contenedor-principal {
+  margin-top: 2rem !important;
+}
+
+.lista-seccion-buscador,
+.lista-seccion-formulario,
+.tabla-contenedor {
+  margin-bottom: 2.5rem !important;
+}
+
+.lista-titulo-separador {
+  margin-bottom: 1.5rem !important;
+  font-weight: 600 !important;
+  color: #2c3e50;
+}
+
+/* Estilos específicos para la tabla */
+.tabla-encabezado {
+  background-color: #f5f5f5 !important;
+}
+
+.tabla-celda-head {
+  font-weight: 700 !important;
+  color: #333333 !important;
+}
+
+.tabla-celda-center {
+  text-align: center !important;
+}
