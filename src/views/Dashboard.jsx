@@ -13,7 +13,7 @@ const Dashboard = () => {
       <Grid container spacing={4}>
         
         {/* Sección de encabezado del Dashboard */}
-        <Grid item xs={12}>
+        <Grid xs={12}>
           <Typography variant="h4" component="h2" gutterBottom fontWeight="600" color="primary">
              Dashboard
           </Typography>
@@ -24,7 +24,7 @@ const Dashboard = () => {
         </Grid>
 
         {/* Sección de Tarjetas de Estadísticas */}
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid xs={12} sm={6} md={4}>
           <Card className="dashboard-tarjeta" elevation={2}>
             <CardContent>
               <Typography color="text.secondary" gutterBottom>
@@ -38,7 +38,7 @@ const Dashboard = () => {
         </Grid>
 
         {/* Aquí puedes agregar más tarjetas en el futuro (ej. Clientes eliminados, Total de ventas, etc.) */}
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid  xs={12} sm={6} md={4}>
           <Card className="dashboard-tarjeta" elevation={2} sx={{ height: '100%' }}>
             <CardContent>
               <Typography color="text.secondary" gutterBottom>

@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react';
-import { AdminContext } from '../context/AdminContext';
+//import { AdminContext } from '../context/AdminContext';
 import { Container, Box, Typography, TextField, MenuItem, Select, Button, InputLabel, FormControl } from '@mui/material';
 
 const Login = () => {
-  const { login } = useContext(AdminContext);
+  //const { login } = useContext(AdminContext);
   const [nombre, setNombre] = useState('');
   const [sector, setSector] = useState('');
 

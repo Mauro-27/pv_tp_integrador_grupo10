@@ -1,20 +1,20 @@
 //import { useState } from 'react' comentado por el momento evitar error
-import { AdminProvider } from './context/AdminContext'
-import Login from './views/Login'
-import Dashboard from './views/Dashboard'
-import ListaClientes from './views/ListaCliente'
+//import { AdminProvider } from './context/AdminContext'
+import { Outlet } from 'react-router-dom';
+import { Container } from '@mui/material';
+
 
 
 function App() {
 
     return(
-    <AdminProvider>
-      <main>
-        <Login />
-        <Dashboard />
-        <ListaClientes />
-      </main>
-    </AdminProvider>
+      <div>
+        <Container maxWidth="lg" sx={{ minHeight: '80vh', mt: 4, mb: 4 }}>
+          <main>
+            <Outlet /> 
+          </main>
+        </Container>
+      </div>
   )
 }
 
