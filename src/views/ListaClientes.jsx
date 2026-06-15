@@ -1,12 +1,12 @@
 import { clienteService } from "../service/clienteService.js";
 import { useState, useEffect, useRef } from "react";
-{/*import FormularioCliente from "../components/FormularioCliente.jsx";*/}
-{/*import RegistroActividad from "../components/RegistroActividad.jsx";*/}
+{/*import FormularioCliente from "../components/FormularioCliente.jsx"; DEJO PARA EL FORMULARIO*/ }
+{/*import RegistroActividad from "../components/RegistroActividad.jsx"; DEJO PARA EL REGISTRO ACTIVIDAD*/}
 import { 
   Container, Typography, TextField, Box, Button,
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper 
 } from "@mui/material";
-import '../css/listaCliente.css';
+import '../css/listaClientes.css';
 
 const ListaClientes = () => {
   const [clientes, setClientes] = useState(clienteService.obtenerClientes());
@@ -69,7 +69,7 @@ const ListaClientes = () => {
         />
       </Box>
 
-      {/* Formulario 
+      {/* Formulario  ACA ESTA EL FORMULARIO
       <Box className="lista-seccion-formulario">
         <FormularioCliente onAgregarCliente={manejarAgregarCliente} />
       </Box>*/}
@@ -125,8 +125,8 @@ const ListaClientes = () => {
 
         </Table>
       </TableContainer>
-
-      {/* Registro de Actividad */}
+            
+      {/* Registro de Actividad  ACA EL REGISTRO DE ACTIVIDAD*/}
       {/*<RegistroActividad fechaUltimaModificacion={ultimaModificacion} />*/}
       
     </Container>
