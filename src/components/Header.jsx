@@ -1,10 +1,9 @@
-import { useContext } from 'react';
-import { AdminContext } from '../context/AdminContext';
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import Nav from './Nav';
+import { useAdmin } from '../hook/useAdmin.js';
 
 function Header() {
-  const { admin, logout } = useContext(AdminContext);
+  const { adminActivo, cerrarSesion } = useAdmin();
 
   return (
     <AppBar position="static">
@@ -12,13 +11,13 @@ function Header() {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Panel de Control de Clientes
         </Typography>
-        {admin && (
+        {adminActivo && (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
             <Nav />
             <Typography variant="body2">
-              {admin.nombre} | {admin.sector}
+              {adminActivo.nombre} | {adminActivo.sector}
             </Typography>
-            <Button color="inherit" variant="outlined" onClick={logout}>
+            <Button color="inherit" variant="outlined" onClick={cerrarSesion}>
               Cerrar Sesión
             </Button>
           </Box>
