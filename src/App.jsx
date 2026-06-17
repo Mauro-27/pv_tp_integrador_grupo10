@@ -1,11 +1,16 @@
-//import { useState } from 'react' comentado por el momento evitar error
-//import { AdminProvider } from './context/AdminContext'
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import { Container } from '@mui/material';
+import { useAdmin } from './hook/useAdmin.js';
 
 function App() {
+
+    const { adminActivo } = useAdmin();
+
+    if (!adminActivo) {
+      return <Navigate to="/" replace />;
+    }
 
     return(
       <div>

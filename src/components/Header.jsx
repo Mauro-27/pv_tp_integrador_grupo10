@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-//import { AdminContext } from '../context/AdminContext';
+import { AdminContext } from '../context/AdminContext';
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import Nav from './Nav';
 
 function Header() {
-  //const { admin, logout } = useContext(AdminContext);
+  const { admin, logout } = useContext(AdminContext);
 
   return (
     <AppBar position="static">
