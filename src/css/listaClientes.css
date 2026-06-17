@@ -29,3 +29,22 @@
 .tabla-celda-center {
   text-align: center !important;
 }
+
+/* --- NUEVAS CLASES PARA LIMPIAR REACT --- */
+.lista-cargando {
+  display: flex !important;
+  justify-content: center !important;
+  margin: 3rem 0 !important;
+}
+
+.lista-alerta {
+  margin-bottom: 2rem !important;
+}
+
+.tabla-clientes {
+  min-width: 650px !important;
+}
+
+.texto-capitalizado {
+  text-transform: capitalize !important;
+}
