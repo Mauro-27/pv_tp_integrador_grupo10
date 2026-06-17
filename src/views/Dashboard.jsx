@@ -1,18 +1,24 @@
 import { Container, Typography, Box, Card, CardContent, Grid } from '@mui/material';
-import { clienteService } from '../service/clienteService.js'; 
+import { useState, useEffect } from 'react'; 
+import apiService from '../service/apiService.js'; 
 import '../css/dashboard.css';
 
 const Dashboard = () => {
-  // Obtenemos los clientes activos desde el servicio
-  const clientesActivos = clienteService.obtenerClientes();
-  const totalClientesActivos = clientesActivos.length;
+  const [totalClientesAPI, setTotalClientesAPI] = useState(0);
+  useEffect(() => {
+    const calcularClientes = async () => {
+      const clientes = await apiService.obtenerClientesAPI();
+      setTotalClientesAPI(clientes.length);
+    };
+    
+    calcularClientes();
+  }, []); 
 
   return (
     <Container maxWidth="lg" className="dashboard-contenedor" sx={{ mt: 4 }}>
       
       <Grid container spacing={4}>
         
-        {/* Sección de encabezado del Dashboard */}
         <Grid xs={12}>
           <Typography variant="h4" component="h2" gutterBottom fontWeight="600" color="primary">
              Dashboard
@@ -23,7 +29,6 @@ const Dashboard = () => {
           </Typography>
         </Grid>
 
-        {/* Sección de Tarjetas de Estadísticas */}
         <Grid xs={12} sm={6} md={4}>
           <Card className="dashboard-tarjeta" elevation={2}>
             <CardContent>
@@ -31,14 +36,13 @@ const Dashboard = () => {
                 Clientes Activos
               </Typography>
               <Typography variant="h4" fontWeight="bold">
-                {totalClientesActivos}
+                {totalClientesAPI}
               </Typography>
             </CardContent>
           </Card>
         </Grid>
 
-        {/* Aquí puedes agregar más tarjetas en el futuro (ej. Clientes eliminados, Total de ventas, etc.) */}
-        <Grid  xs={12} sm={6} md={4}>
+        <Grid xs={12} sm={6} md={4}>
           <Card className="dashboard-tarjeta" elevation={2} sx={{ height: '100%' }}>
             <CardContent>
               <Typography color="text.secondary" gutterBottom>

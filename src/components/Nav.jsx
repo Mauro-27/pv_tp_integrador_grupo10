@@ -2,8 +2,8 @@ import { Box, Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 const enlaces = [
-  { texto: 'Dashboard', to: '/', exact: true },
-  { texto: 'Lista de Clientes', to: '/clientes', exact: false }
+  { texto: 'Dashboard', to: '/app', exact: true },
+  { texto: 'Lista de Clientes', to: '/app/clientes', exact: false }
 ];
 
 const Nav = () => {
