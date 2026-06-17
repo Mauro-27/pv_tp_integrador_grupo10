@@ -1,12 +1,12 @@
 import { clienteService } from "../service/clienteService.js";
 import { useState, useEffect, useRef } from "react";
 import apiService from "../service/apiService.js";
-{/*import FormularioCliente from "../components/FormularioCliente.jsx"; DEJO PARA EL FORMULARIO*/}
+import FormularioCliente from "../components/FormularioCliente.jsx";
 {/*import RegistroActividad from "../components/RegistroActividad.jsx"; DEJO PARA EL REGISTRO ACTIVIDAD*/}
 import { 
   Container, Typography, TextField, Box, Button,
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper,
-  CircularProgress, Alert 
+  CircularProgress, Alert, Snackbar
 } from "@mui/material";
 import '../css/listaClientes.css';
 
@@ -16,6 +16,7 @@ const ListaClientes = () => {
   const [ultimaModificacion, setUltimaModificacion] = useState("");
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
+  const [notificacion, setNotificacion] = useState({ open: false, mensaje: '', severity: 'success' });
 
   const primerRender = useRef(true);
 
@@ -47,9 +48,15 @@ const ListaClientes = () => {
     setUltimaModificacion(`${fecha} a las ${hora} hs.`);
   }, [clientes]);
 
-  const manejarAgregarCliente = (nuevoCliente) => {
-    clienteService.agregarCliente(nuevoCliente);
-    setClientes(clienteService.obtenerClientes());
+  const manejarAgregarCliente = async (nuevoCliente) => {
+    try {
+      const respuesta = await apiService.agregarClienteAPI(nuevoCliente);
+      // FakeStoreAPI simula la subida y devuelve un ID
+      setClientes([{ ...nuevoCliente, id: respuesta.id }, ...clientes]);
+      setNotificacion({ open: true, mensaje: `¡Cliente creado exitosamente! ID asignado: ${respuesta.id}`, severity: 'success' });
+    } catch (err) {
+      setNotificacion({ open: true, mensaje: err.message, severity: 'error' });
+    }
   };
 
   const manejarEliminar = (id) => {
@@ -80,10 +87,10 @@ const ListaClientes = () => {
         />
       </Box>
 
-      {/* Formulario  ACA ESTA EL FORMULARIO
-      <Box className="lista-seccion-formulario">
+      {/* formulario */}
+      <Box className="lista-seccion-formulario" sx={{ mb: 4 }}>
         <FormularioCliente onAgregarCliente={manejarAgregarCliente} />
-      </Box>*/}
+      </Box>
 
       <Typography variant="h4" className="lista-titulo-separador">
         Clientes Actuales
@@ -162,6 +169,17 @@ const ListaClientes = () => {
       {/* Registro de Actividad  ACA EL REGISTRO DE ACTIVIDAD*/}
       {/*<RegistroActividad fechaUltimaModificacion={ultimaModificacion} />*/}
       
+      <Snackbar 
+        open={notificacion.open} 
+        autoHideDuration={5000} 
+        onClose={() => setNotificacion({ ...notificacion, open: false })}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={() => setNotificacion({ ...notificacion, open: false })} severity={notificacion.severity} sx={{ width: '100%' }}>
+          {notificacion.mensaje}
+        </Alert>
+      </Snackbar>
+
     </Container>
   );
 };
