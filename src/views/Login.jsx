@@ -1,25 +1,40 @@
 import { useState } from 'react';
-import { Container, Box, Typography, TextField, MenuItem, Select, Button, InputLabel, FormControl } from '@mui/material';
+import { Container, Box, Typography, TextField, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useAdmin } from '../hook/useAdmin.js';
 import adminService from '../service/adminService.js';
 
 const Login = () => {
-
   const { guardarSesion } = useAdmin();
   const navigate = useNavigate();
 
-  const [nombre, setNombre] = useState('');
-  const [sector, setSector] = useState('');
+  const [usuario, setUsuario] = useState('');
+  const [contrasena, setContrasena] = useState('');
   const [error, setError] = useState(''); 
+
+  const validarUsuario = (user) => {
+    if (/\d/.test(user)) {
+      return 'El nombre de usuario no puede contener números.';
+    }
+    if (!/[A-Z]/.test(user)) {
+      return 'El nombre de usuario debe contener al menos una mayúscula.';
+    }
+    return null;
+  };
 
   const manejarIngreso = async (e) => {
     e.preventDefault();
     setError(''); 
     
-    if (nombre && sector) {
+    const errorValidacion = validarUsuario(usuario);
+    if (errorValidacion) {
+      setError(errorValidacion);
+      return;
+    }
+    
+    if (usuario && contrasena) {
       try {
-        const data = await adminService.login(nombre, sector);
+        const data = await adminService.login(usuario, contrasena);
         
         guardarSesion(data);
         navigate('/app');
@@ -43,22 +58,21 @@ const Login = () => {
             margin="normal"
             required
             fullWidth
-            label="Nombre del Administrador"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
+            label="Usuario"
+            value={usuario}
+            onChange={(e) => setUsuario(e.target.value)}
+            autoFocus
           />
           
-          <FormControl fullWidth margin="normal" required>
-            <InputLabel>Sector de la Empresa</InputLabel>
-            <Select
-              value={sector}
-              label="Sector de la Empresa"
-              onChange={(e) => setSector(e.target.value)}
-            >
-              <MenuItem value="Soporte">Soporte</MenuItem>
-              <MenuItem value="Gerencia">Gerencia</MenuItem>
-            </Select>
-          </FormControl>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            label="Contraseña"
+            type="password"
+            value={contrasena}
+            onChange={(e) => setContrasena(e.target.value)}
+          />
 
           {error && (
             <Typography color="error" variant="body2" sx={{ mt: 1, textAlign: 'center' }}>

@@ -2,7 +2,7 @@ const administradores = [
   {
     id: 1,
     nombre: "Mauro",
-    user: "admin",
+    user: "admin", //funciona con Admin
     password: "123",
     sector: "Soporte",
   },
@@ -22,11 +22,11 @@ const administradores = [
   }
 ];
 
-const login = (nombre, sector) => {
+const login = (user, password) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const encontrado = administradores.find(
-        (admin) => admin.nombre.toLowerCase() === nombre.toLowerCase() && admin.sector === sector
+        (admin) => admin.user.toLowerCase() === user.toLowerCase() && admin.password === password
       );
 
       if (encontrado) {
@@ -36,11 +36,10 @@ const login = (nombre, sector) => {
           sector: encontrado.sector,
         });
       } else {
-        reject(new Error("El nombre o el sector no coinciden. Intente nuevamente."));
+        reject(new Error("El usuario o la contraseña no coinciden. Intente nuevamente."));
       }
     }, 800);
   });
 };
 
 export default { login };
-
