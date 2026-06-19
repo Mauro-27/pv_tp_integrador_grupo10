@@ -1,5 +1,6 @@
 import { useClientes } from "../hook/useClientes.js";
 import FormularioCliente from "../components/FormularioCliente.jsx";
+import { useAdmin } from "../hook/useAdmin.js";
 import Buscador from "../components/Buscador.jsx";
 import TablaClientes from "../components/TablaClientes.jsx";
 import { Container, Typography, Box, CircularProgress, Alert, Snackbar } from "@mui/material";
@@ -13,6 +14,10 @@ const ListaClientes = () => {
     clientesFiltrados,
     manejarAgregarCliente, manejarEliminar
   } = useClientes();
+
+  const { adminActivo } = useAdmin();
+
+  const esGerente = adminActivo?.sector === 'Gerencia';
 
   return (
     <Container maxWidth="lg" className="lista-contenedor-principal">
@@ -40,6 +45,7 @@ const ListaClientes = () => {
         <TablaClientes 
           clientesFiltrados={clientesFiltrados} 
           manejarEliminar={manejarEliminar} 
+          esGerente={esGerente}
         />
       )}
       
