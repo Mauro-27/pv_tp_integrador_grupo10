@@ -1,6 +1,6 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from "@mui/material";
 
-const TablaClientes = ({ clientesFiltrados, manejarEliminar }) => {
+const TablaClientes = ({ clientesFiltrados, manejarEliminar, esGerente }) => {
   return (
     <TableContainer component={Paper} elevation={3} className="tabla-contenedor">
       <Table className="tabla-clientes" aria-label="tabla de clientes">
@@ -33,15 +33,29 @@ const TablaClientes = ({ clientesFiltrados, manejarEliminar }) => {
                 <TableCell>{cliente.email}</TableCell>
                 <TableCell>{cliente.phone}</TableCell>
                 <TableCell className="texto-capitalizado">{cliente.address?.city}</TableCell>
+
                 <TableCell align="center">
+                  
                   <Button 
-                    variant="contained" 
-                    color="error" 
+                    variant="outlined" 
+                    color="primary" 
                     size="small"
-                    onClick={() => manejarEliminar(cliente.id)}
+                    sx={{ mr: 1 }}
                   >
-                    Eliminar
+                    Detalles
                   </Button>
+                  
+                  {esGerente && (
+                    <Button 
+                      variant="contained" 
+                      color="error" 
+                      size="small"
+                      onClick={() => manejarEliminar(cliente.id)}
+                    >
+                      Eliminar
+                    </Button>
+                  )}
+
                 </TableCell>
               </TableRow>
             ))
