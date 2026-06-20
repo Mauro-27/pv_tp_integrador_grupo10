@@ -1,26 +1,4 @@
-const administradores = [
-  {
-    id: 1,
-    nombre: "Mauro",
-    user: "admin", //funciona con Admin
-    password: "123",
-    sector: "Soporte",
-  },
-  {
-    id: 2,
-    nombre: "Gabriel",
-    user: "gabriel",
-    password: "345",
-    sector: "Gerencia",
-  },
-  {
-    id: 3,
-    nombre: "Erika",
-    user: "erika",
-    password: "234",
-    sector: "Soporte",
-  }
-];
+import administradores from "../data/admin.json";
 
 const login = (user, password) => {
   return new Promise((resolve, reject) => {
