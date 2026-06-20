@@ -17,7 +17,7 @@ const DetalleCliente = () => {
       try {
         setCargando(true);
         const respuesta = await fetch(`https://fakestoreapi.com/users/${id}`);
-        if (!respuesta.ok) throw new Error('No se puede acceder al detalle del cliente');
+        if (!respuesta.ok) throw new Error('No se puede acceder al detalle del cliente en este momento.');
         const datos = await respuesta.json();
         setCliente(datos);
       } catch (err) {
