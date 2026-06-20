@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nombre": "Mauro",
+    "user": "admin",
+    "password": "123",
+    "sector": "Soporte"
+  },
+  {
+    "id": 2,
+    "nombre": "Gabriel",
+    "user": "gabriel",
+    "password": "345",
+    "sector": "Gerencia"
+  },
+  {
+    "id": 3,
+    "nombre": "Erika",
+    "user": "erika",
+    "password": "234",
+    "sector": "Soporte"
+  }
+]
