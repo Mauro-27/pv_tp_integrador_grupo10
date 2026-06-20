@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from "@mui/material";
-
+import { Link } from 'react-router-dom';
 const TablaClientes = ({ clientesFiltrados, manejarEliminar, esGerente }) => {
   return (
     <TableContainer component={Paper} elevation={3} className="tabla-contenedor">
@@ -41,6 +41,8 @@ const TablaClientes = ({ clientesFiltrados, manejarEliminar, esGerente }) => {
                     color="primary" 
                     size="small"
                     sx={{ mr: 1 }}
+                    component={Link}
+                    to={`${cliente.id}`}
                   >
                     Detalles
                   </Button>
