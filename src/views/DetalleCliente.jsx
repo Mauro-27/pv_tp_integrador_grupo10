@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { Container, Card, CardContent, Typography, Button, CircularProgress, Alert, Box } from '@mui/material';
 import { useAdmin } from '../hook/useAdmin';
 import apiService from '../service/apiService'; 
@@ -52,7 +52,7 @@ const DetalleCliente = () => {
 
   if (cargando) return <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}><CircularProgress /></Box>;
   if (error) return <Container sx={{ mt: 2 }}><Alert severity="error">{error}</Alert></Container>;
-  if (!cliente) return null;
+  if (!cliente || !cliente.name) return <Navigate to="/404-not-found" replace />
 
   const { name, email, phone, address, username, password } = cliente;
   const { firstname, lastname } = name;
