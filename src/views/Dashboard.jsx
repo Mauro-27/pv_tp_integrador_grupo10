@@ -5,14 +5,22 @@ import '../css/dashboard.css';
 
 const Dashboard = () => {
   const [totalClientesAPI, setTotalClientesAPI] = useState(0);
+
   useEffect(() => {
     const calcularClientes = async () => {
-      const clientes = await apiService.obtenerClientesAPI();
-      setTotalClientesAPI(clientes.length);
+      const clientesGuardados = localStorage.getItem('api_clientes_data');
+      if (clientesGuardados) {
+        const clientesLocales = JSON.parse(clientesGuardados);
+        setTotalClientesAPI(clientesLocales.length);
+      } else {
+        const clientesAPI = await apiService.obtenerClientesAPI();
+        setTotalClientesAPI(clientesAPI.length);
+        localStorage.setItem('api_clientes_data', JSON.stringify(clientesAPI));
+      }
     };
     
     calcularClientes();
-  }, []); 
+  }, []);
 
   return (
     <Container maxWidth="lg" className="dashboard-contenedor" sx={{ mt: 4 }}>
