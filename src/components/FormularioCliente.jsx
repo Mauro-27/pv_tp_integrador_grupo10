@@ -1,25 +1,27 @@
 import { useState } from 'react';
-import { Box, TextField, Button, Grid, Typography, CircularProgress } from '@mui/material';
+import { Box, TextField, Button, Grid, Typography, CircularProgress, InputAdornment } from '@mui/material';
+import { useValidarForm } from '../hook/useValidarForm.js';
+
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const FormularioCliente = ({ onAgregarCliente }) => {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    apellido: '',
-    mail: '',
-    cel: '',
-    ciudad: ''
+  const { 
+    formData, 
+    validaciones, 
+    formularioValido, 
+    handleChange, 
+    resetForm 
+  } = useValidarForm({
+    nombre: '', apellido: '', mail: '', cel: '', ciudad: ''
   });
-  const [enviando, setEnviando] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const [enviando, setEnviando] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setEnviando(true);
     
-    // estructura de fakestoreaPI
     const nuevoCliente = {
       email: formData.mail,
       username: formData.nombre.toLowerCase() + formData.apellido.toLowerCase(),
@@ -39,34 +41,78 @@ const FormularioCliente = ({ onAgregarCliente }) => {
     };
 
     await onAgregarCliente(nuevoCliente);
-    setFormData({ nombre: '', apellido: '', mail: '', cel: '', ciudad: '' });
+    resetForm(); 
     setEnviando(false);
   };
+
+  // Función actualizada a la sintaxis moderna (slotProps)
+  const obtenerIcono = (esValido) => ({
+    input: {
+      endAdornment: (
+        <InputAdornment position="end">
+          {esValido ? <CheckCircleIcon color="success" /> : <CancelIcon color="error" />}
+        </InputAdornment>
+      )
+    }
+  });
 
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ mb: 4, p: 3, border: '1px solid #ccc', borderRadius: 2 }}>
       <Typography variant="h6" gutterBottom color="primary">Alta de Nuevo Cliente</Typography>
+      
+      {/* Ya no usamos la palabra "item" adentro de los Grids */}
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <TextField required fullWidth label="Nombre" name="nombre" value={formData.nombre} onChange={handleChange} disabled={enviando} />
+        
+        <Grid xs={12} sm={6}>
+          <TextField 
+            required fullWidth label="Nombre" name="nombre" 
+            value={formData.nombre} onChange={handleChange} disabled={enviando}
+            slotProps={obtenerIcono(validaciones.nombre)}
+          />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField required fullWidth label="Apellido" name="apellido" value={formData.apellido} onChange={handleChange} disabled={enviando} />
+        
+        <Grid xs={12} sm={6}>
+          <TextField 
+            required fullWidth label="Apellido" name="apellido" 
+            value={formData.apellido} onChange={handleChange} disabled={enviando}
+            slotProps={obtenerIcono(validaciones.apellido)}
+          />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField required fullWidth type="email" label="Email" name="mail" value={formData.mail} onChange={handleChange} disabled={enviando} />
+        
+        <Grid xs={12} sm={6}>
+          <TextField 
+            required fullWidth type="email" label="Email" name="mail" 
+            value={formData.mail} onChange={handleChange} disabled={enviando}
+            slotProps={obtenerIcono(validaciones.mail)}
+          />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField required fullWidth label="Teléfono" name="cel" value={formData.cel} onChange={handleChange} disabled={enviando} />
+        
+        <Grid xs={12} sm={6}>
+          <TextField 
+            required fullWidth label="Teléfono" name="cel" 
+            value={formData.cel} onChange={handleChange} disabled={enviando}
+            placeholder="Ej: 3881456315"
+            slotProps={obtenerIcono(validaciones.cel)}
+          />
         </Grid>
-        <Grid item xs={12}>
-          <TextField required fullWidth label="Ciudad" name="ciudad" value={formData.ciudad} onChange={handleChange} disabled={enviando} />
+        
+        <Grid xs={12}>
+          <TextField 
+            required fullWidth label="Ciudad" name="ciudad" 
+            value={formData.ciudad} onChange={handleChange} disabled={enviando}
+            slotProps={obtenerIcono(validaciones.ciudad)}
+          />
         </Grid>
-        <Grid item xs={12}>
-          <Button type="submit" variant="contained" color="success" fullWidth disabled={enviando}>
+        
+        <Grid xs={12}>
+          <Button 
+            type="submit" variant="contained" color="success" fullWidth 
+            disabled={enviando || !formularioValido}
+          >
             {enviando ? <CircularProgress size={24} color="inherit" /> : 'Registrar Cliente'}
           </Button>
         </Grid>
+        
       </Grid>
     </Box>
   );

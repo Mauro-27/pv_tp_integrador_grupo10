@@ -76,7 +76,7 @@ export const useClientes = () => {
     const texto = busqueda.toLowerCase();
     const apellido = c.name?.lastname || '';
     const ciudad = c.address?.city || '';
-    return apellido.toLowerCase().includes(texto) || ciudad.toLowerCase().includes(texto);
+    return apellido.toLowerCase().startsWith(texto) || ciudad.toLowerCase().startsWith(texto);
   });
 
   return {
