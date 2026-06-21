@@ -1,10 +1,16 @@
-# Panel de Control de Clientes - Grupo 10
-Programación Visual
-Trabajo Práctico Final Integrador 
-La aplicación web es un Panel de Control de Clientes, desarrollado con React, Vite y Material UI. Se conecta a la API pública FakeStoreAPI.
+# Trabajo Práctico Final Integrador
 
-## Integrantes del Grupo
+- **Materia**: Programación Visual
+- **Carrera**: Analista Programador Universitario
 
-- Campos Mauro Ismael
-- Chauque Gabriel Horacio
-- Rocha Erika Abigail
+# Panel de Control de Clientes
+
+El presente proyecto consiste en una aplicación web diseñada para la administración de clientes.
+
+El desarrollo fue implementado como una SPA utilizando las tecnologías de React, Vite, JavaScript, React Router DOM, y Material UI para el diseño de la interfaz gráfica. Para la simulación de una base de datos, el sistema se integra con la API pública FakeStoreAPI.
+
+## Integrantes - Grupo10
+
+- Campos Mauro Ismael - GitHub (Mauro-27)
+- Chauque Gabriel Horacio - GitHub (GabriellChau)
+- Rocha Erika Abigail - GitHub (rochaerika775-cell)
