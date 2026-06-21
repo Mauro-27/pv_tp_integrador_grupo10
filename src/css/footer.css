@@ -1,0 +1,111 @@
+/* Contenedor principal del Footer */
+.footer-contenedor {
+  background-color: #1a2027; /* Gris oscuro muy elegante */
+  color: #ffffff;
+  padding: 3rem 0 1rem 0;
+  margin-top: auto; /* Empuja el footer siempre hacia abajo */
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Caja que centra y distribuye el contenido */
+.footer-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Diseño para computadoras (Desktop) */
+@media (min-width: 768px) {
+  .footer-contenido {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+/* SECCIÓN MARCA (Izquierda) */
+.footer-seccion-marca {
+  text-align: center;
+  max-width: 400px;
+}
+
+@media (min-width: 768px) {
+  .footer-seccion-marca {
+    text-align: left;
+  }
+}
+
+.footer-titulo-grupo {
+  font-weight: 700 !important;
+  letter-spacing: 1px;
+  color: #90caf9; /* Un azul claro de Material UI para que resalte */
+}
+
+.footer-subtitulo {
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.footer-descripcion {
+  opacity: 0.7;
+  line-height: 1.6 !important;
+}
+
+/* SECCIÓN CONTACTO (Derecha) */
+.footer-seccion-contacto {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-seccion-contacto {
+    text-align: left;
+  }
+}
+
+.footer-titulo-contacto {
+  font-weight: 600 !important;
+  letter-spacing: 1px;
+  margin-bottom: 1rem !important;
+  color: #90caf9;
+}
+
+.footer-enlaces {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-enlace-item {
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0.8;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .footer-enlace-item {
+    justify-content: flex-start;
+  }
+}
+
+.footer-enlace-item:hover {
+  opacity: 1;
+  transform: translateX(5px); /* Pequeño efecto de movimiento al pasar el mouse */
+}
+
+/* SECCIÓN DERECHOS (Abajo del todo) */
+.footer-derechos {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0.6;
+  font-size: 0.85rem;
+}
